@@ -1,0 +1,27 @@
+<div class="row" ng-app="AngulaRails" ng-controller="GitHttpController">
+  <div class="col-md-6">
+    <h1>Git $http</h1>
+    <form ng-submit="search()">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa-search"></i> 
+        </span>
+        <input type="text" class="form-control" placeholder="Git Username" ng-model="username">
+      </div>
+    </form>
+  
+  <div class="alert alert-danger" ng-show="errorMessage"> 
+    <strong><i class="icon-warning-sign"></i> Error!</strong> {{ errorMessage }}
+  </div>
+
+   <i class="fa-spinner fa-spin"ng-show="searching"></i>
+
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="repo in repos">
+        <h4 class="list-group-item-heading">{{ repo.full_name }}</h4>
+        <p class="list-group-item-text text-muted">{{ repo.url }}</p>
+      </li>
+    </ul>
+
+  </div>
+</div>

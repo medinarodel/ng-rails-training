@@ -1,0 +1,34 @@
+<div ng-app="AngulaRails">
+
+  <%= form_for@widget, id: "widgetForm", html: { name: "widgetForm", "novalidate" => true } do |f| %>
+    <% if @widget.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(@widget.errors.count, "error") %> prohibited this widget from being saved:</h2>
+
+        <ul>
+        <% @widget.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group" ng-class="{ 'has-error': widgetForm['widget[name]'].$invalid}">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control", "ng-model" => "name", required:true,"ng-minlength"=>"7" %>
+      <span class="help-block" ng-show="widgetForm['widget[name]'].$error.required">Required</span>
+      <span class="help-block" ng-show="widgetForm['widget[name]'].$error.minlength">Minimum length of 7</span>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': widgetForm['widget[price]'].$invalid}">
+      <%= f.label :price %><br>
+      <%= f.number_field :price, class: "form-control", "ng-model" => "price", required:true,"min"=>"10" %>
+      <span class="help-block" ng-show="widgetForm['widget[name]'].$error.required">Required</span>
+      <span class="help-block" ng-show="widgetForm['widget[price]'].$error.min">Must be greater than 10</span>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Save", class: "btn btn-primary", "ng-disabled" => "widgetForm.$invalid" %>
+    </div>
+  <% end %>
+
+</div>

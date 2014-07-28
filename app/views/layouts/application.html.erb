@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<htmllang="en"> 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "AngulaJS Rails" %></title>
+
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+
+</head>
+<body>
+  <div class="navbar navbar-inverse">
+    <div class="container">
+      <a class="navbar-brand" href="#">Angularails</a>
+    </div>
+  </div>
+  <div class="container"> <%= yield %>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+</body>
+
+</html>

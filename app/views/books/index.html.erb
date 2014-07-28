@@ -1,0 +1,33 @@
+<div ng-app="AngulaRails" ng-controller="BooksController" ng-init="urls=<%=@urls.to_json%>; books=<%=@books_json.to_json%>">
+
+  <form ng-submit="save()">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" ng-model="book.title" /> 
+    </div>
+    <div class="form-group">
+      <label>Author</label>
+      <input type="text" class="form-control" ng-model="book.author" />
+    </div>
+    <button class="btn btn-primary">
+    Save
+    </button>
+  </form>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Books</h1>
+      <ul>
+        <li ng-repeat="book in books">
+          <div class="btn btn-default" ng-click="edit(book)">
+            <i class="fa-pencil" /> edit</i>
+          </div>
+          <div class="btn btn-default" ng-click="delete(book)">
+            <i class="fa-trash" /> x</i>
+          </div>
+          {{ book.title }} by {{ book.author }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
