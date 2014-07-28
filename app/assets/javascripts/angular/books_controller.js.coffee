@@ -1,8 +1,8 @@
 AngulaRails.controller "BooksController", ($scope,$http)-> 
   $scope.getBooks = () ->
-    $http({ method: "GET", url: $scope.urls.books })
-      .success (response) ->
-        $scope.books = response.books
+    # Book.getBooks($scope)
+    Book.getBooksWithPromises().then (books) ->
+      $scope.books = books
 
   $scope.save = () ->
     if $scope.book.id?
