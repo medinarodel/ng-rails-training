@@ -1,0 +1,23 @@
+.row{"ng-app"=>"AngulaRails", "ng-controller"=>"BooksController", "ng-init"=>"getBooks()"} 
+  .col-md-12
+    / Form
+    %form{ "ng-submit"=> "save()"}
+      .form-group
+        %label Title
+        %input{type: "text", "ng-model" => "book.title", class: "form-control"}
+      .form-group
+        %label Author
+        %input{type: "text", "ng-model" => "book.author", class: "form-control"}
+
+      %button.btn.btn-primary
+        Save
+
+    / Listings
+    %h3 Bookshelf
+    %ul
+      %li{"ng-repeat"=>"book in books" }
+        .btn.btn-default{"ng-click"=>"edit(book)"}
+          Edit
+        .btn.btn-danger{"ng-click"=>"delete(book)"}
+          Delete
+        {{book.title}} by {{book.author}}

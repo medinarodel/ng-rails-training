@@ -6,19 +6,23 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     respond_to do |format|
-      format.html {
-        @books_json = @books.map{ |b| BookSerializer.new(b).serializable_hash }
-        @urls = {
-          books: books_path
-        }
-      }
-      format.json { render json: @books }
+      format.html
+      format.json { render json: @books, root: false, each_serializer: BookSerializer }
     end
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+    respond_to do |format|
+      if @book.save
+        format.html
+        format.json { render json: @book, root: false }
+      else
+        format.html
+        format.json
+      end
+    end
   end
 
   # GET /books/new
@@ -38,7 +42,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render json: @book }
+        format.json { render json: @book, root: false }
       else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
