@@ -1,0 +1,13 @@
+<ul class="pagination">
+  <li>
+    <a ng-click="setPage(currentPage - 1)">&laquo;</a>
+  </li>
+
+  <li ng-repeat="page in pages" ng-class="{ active: currentPage == page }">
+    <a ng-click="setPage(page)">{{ page }}</a>
+  </li>
+
+  <li>
+    <a ng-click="setPage(currentPage + 1)">&raquo;</a>
+  </li>
+</ul>

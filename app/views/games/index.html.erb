@@ -1,0 +1,37 @@
+<div ng-app="AngulaRails" ng-controller="GamesController" ng-init="init()">
+  <h1>Games</h1>
+
+
+  <%= link_to "New Game", new_game_path, class: "btn btn-default" %>
+
+  <br>
+  <div ar-paging></div>
+<!--   <ul class="pagination">
+    <li>
+      <a ng-click="setPage(currentPage - 1)">&laquo;</a>
+    </li>
+
+    <li ng-repeat="page in pages" ng-class="{ active: currentPage == page }">
+      <a ng-click="setPage(page)">{{ page }}</a>
+    </li>
+
+    <li>
+      <a ng-click="setPage(currentPage + 1)">&raquo;</a>
+    </li>
+  </ul> -->
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="game in games">
+        <td>{{ game.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
